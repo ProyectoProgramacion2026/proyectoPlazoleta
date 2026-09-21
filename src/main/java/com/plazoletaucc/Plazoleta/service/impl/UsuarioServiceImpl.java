@@ -7,12 +7,15 @@ import com.plazoletaucc.Plazoleta.entity.Usuario;
 import com.plazoletaucc.Plazoleta.repository.UsuarioRepository;
 import com.plazoletaucc.Plazoleta.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class UsuarioServiceImpl implements UsuarioService {
     private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
+
     @Override
     public RegistroResponseDTO registrarUsuario(RegistroRequestDTO registroRequestDTO) {
         /*if(usuarioRepository.existsByCorreo(registroRequestDTO.getEmail())){
@@ -23,9 +26,9 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .apellido(registroRequestDTO.getApellido())
                 .documentoDeIdentidad(registroRequestDTO.getDocumentoDeIdentidad())
                 .celular(registroRequestDTO.getCelular())
-                .fechaDeNacimiento(registroRequestDTO.getFechaNacimiento())
+                .fechaDeNacimiento(registroRequestDTO.getFechaDeNacimiento())
                 .correo(registroRequestDTO.getCorreo())
-                .clave(registroRequestDTO.getClave())
+                .clave(passwordEncoder.encode(registroRequestDTO.getClave()))
                 .rol(Rol.PROPIETARIO)
                 .build();
 

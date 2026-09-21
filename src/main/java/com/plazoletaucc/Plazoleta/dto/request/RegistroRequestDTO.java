@@ -21,7 +21,7 @@ public class RegistroRequestDTO {
     private String documentoDeIdentidad;
     @Size(min = 1, max = 13)
     private String celular;
-    private Date fechaNacimiento;
+    private Date fechaDeNacimiento;
     @NotBlank
     @Email
     private String correo;
