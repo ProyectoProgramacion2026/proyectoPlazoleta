@@ -21,7 +21,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth-> auth
                         .requestMatchers(
                                 "/api/v1/usuarios/**",
-                                "/api/v1/categorias/**"
+                                "/api/v1/categorias/**",
+                                "/api/v1/platos/**"
                         ).permitAll()
                         .anyRequest()
                         .authenticated()
