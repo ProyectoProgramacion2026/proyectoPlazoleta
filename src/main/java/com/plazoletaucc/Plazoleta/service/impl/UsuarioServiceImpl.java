@@ -4,6 +4,7 @@ import com.plazoletaucc.Plazoleta.dto.reponse.RegistroResponseDTO;
 import com.plazoletaucc.Plazoleta.dto.request.RegistroRequestDTO;
 import com.plazoletaucc.Plazoleta.entity.Rol;
 import com.plazoletaucc.Plazoleta.entity.Usuario;
+import com.plazoletaucc.Plazoleta.exception.CorreoDuplicadoException;
 import com.plazoletaucc.Plazoleta.repository.UsuarioRepository;
 import com.plazoletaucc.Plazoleta.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
@@ -18,9 +19,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public RegistroResponseDTO registrarUsuario(RegistroRequestDTO registroRequestDTO) {
-        /*if(usuarioRepository.existsByCorreo(registroRequestDTO.getEmail())){
-            throw new RuntimeException("El correo ya existe en el sistema");
-        }*/
+        if(usuarioRepository.existsByCorreo(registroRequestDTO.getCorreo())){
+            throw new CorreoDuplicadoException("El correo ya existe");
+        }
+
         Usuario usuario = Usuario.builder()
                 .nombre(registroRequestDTO.getNombre())
                 .apellido(registroRequestDTO.getApellido())
