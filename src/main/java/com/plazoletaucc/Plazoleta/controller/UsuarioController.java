@@ -17,9 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsuarioController {
     private final UsuarioService usuarioService;
 
-    @PostMapping("/registro")
+    @PostMapping("/registro-propietario")
     public ResponseEntity<RegistroResponseDTO> registrarUsuario(@RequestBody RegistroRequestDTO registroRequestDTO){
-        return ResponseEntity.status(HttpStatus.CREATED)
+        ResponseEntity status = ResponseEntity.status(HttpStatus.CREATED)
                 .body(usuarioService.registrarUsuario(registroRequestDTO));
+
+        System.out.println(status.getStatusCode());
+
+        return status;
     }
 }

@@ -31,7 +31,7 @@ public class JwtService {
     }
 
     public String generateToken(String correo, Rol rol) {
-        SecretKey key = getSecretKey();
+        SecretKey key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
 
         return Jwts.builder()
                 .setSubject(correo)
