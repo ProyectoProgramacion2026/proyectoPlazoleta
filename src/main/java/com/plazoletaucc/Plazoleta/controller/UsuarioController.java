@@ -19,11 +19,7 @@ public class UsuarioController {
 
     @PostMapping("/registro-propietario")
     public ResponseEntity<RegistroResponseDTO> registrarUsuario(@RequestBody RegistroRequestDTO registroRequestDTO){
-        ResponseEntity status = ResponseEntity.status(HttpStatus.CREATED)
+        return ResponseEntity.status(HttpStatus.CREATED)
                 .body(usuarioService.registrarUsuario(registroRequestDTO));
-
-        System.out.println(status.getStatusCode());
-
-        return status;
     }
 }
